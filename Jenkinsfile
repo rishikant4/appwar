@@ -43,9 +43,8 @@ pipeline {
             }
             steps {
                jacoco(
-                    execPattern: '**/target/**.exec',
-                    classPattern: '**/target/classes',
-                    sourcePattern: '**/src',
+                 
+                    
                     inclusionPattern: 'com/iamvickyav/**',
                     changeBuildStatus: true,
                     minimumInstructionCoverage: '30',
