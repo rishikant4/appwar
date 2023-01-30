@@ -1,43 +1,36 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: spring
-  labels:
-    app: spring
 spec:
-  strategy:
-    type: Recreate
+  replicas: 1
   selector:
     matchLabels:
       app: spring
-      
   template:
     metadata:
       labels:
         app: spring
-        tier: spring
     spec:
       containers:
-        - name: spring
-          image: rishi236/spring:0.1
-          imagePullPolicy: Always
-          ports:
-          - containerPort: 5000
-            name: hello
+      - name: spring
+        image: rishi236/spring:0.1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
 
 
 ---
 apiVersion: v1
 kind: Service
+  
 metadata:
   name: spring
-  labels:
-    app: spring
 spec:
-  ports:
-    - port: 5000
-      targetPort: 5000
-  selector:
-    app: hello
-    tier: hello
   type: LoadBalancer
+  selector:
+    app: spring
+  ports:
+  - port: 5000
+    targetPort: 5000
