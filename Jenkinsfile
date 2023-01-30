@@ -72,7 +72,7 @@ pipeline {
        }
 		stage('Deploy to staging gke'){
          when {
-                branch 'dev'
+                branch 'main'
             }
         steps{
             
