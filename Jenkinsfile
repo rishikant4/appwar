@@ -7,7 +7,7 @@ pipeline {
         CREDENTIALS_ID = 'My First Project'
 		
 	def git_branch = 'main'
-	def git_url = 'https://github.com/rishikant4/devops.git'
+	def git_url = 'https://github.com/rishikant4/appwar.git'
 	
 	def mvntest = 'mvn test '
 	def mvnpackage = 'mvn clean install'
