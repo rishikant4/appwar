@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hello
+  name: spring
   labels:
-    app: hello
+    app: spring
 spec:
   strategy:
     type: Recreate
   selector:
     matchLabels:
-      app: hello
+      app: spring
       
   template:
     metadata:
       labels:
-        app: hello
-        tier: hello
+        app: spring
+        tier: spring
     spec:
       containers:
-        - name: hello
-          image: rishi236/demoapp:latest
+        - name: spring
+          image: rishi236/spring:0.1
           imagePullPolicy: Always
           ports:
           - containerPort: 5000
@@ -30,9 +30,9 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: hello
+  name: spring
   labels:
-    app: hello
+    app: spring
 spec:
   ports:
     - port: 5000
