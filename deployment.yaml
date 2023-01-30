@@ -2,35 +2,35 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: spring
+ name: myapp
+ labels:
+  app: myapp
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: spring
-  template:
-    metadata:
-      labels:
-        app: spring
-    spec:
-      containers:
-      - name: spring
-        image: rishi236/spring:0.1
-        imagePullPolicy: Always
-        ports:
-        - containerPort: 5000
-
+ replicas: 1
+ selector:
+  matchLabels:
+   app: myapp
+ template:
+  metadata: 
+   labels:
+    app: myapp
+  spec:
+   containers:
+   - name: myapp
+     image: rishi236/spring:0.1
+     ports:
+     - containerPort: 5500
 
 ---
 apiVersion: v1
 kind: Service
-  
 metadata:
-  name: spring
+  name: myapp
 spec:
   type: LoadBalancer
   selector:
-    app: spring
+    app: myapp
   ports:
-  - port: 5000
-    targetPort: 5000
+    - protocol: TCP
+      port: 5500
+      targetPort: 5500
