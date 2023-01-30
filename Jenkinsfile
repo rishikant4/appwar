@@ -36,14 +36,14 @@ pipeline {
 	stage('Maven Build') {
 	steps {
 	sh "${env.mvnpackage}"
-	echo 'Maven Build Completed'
+	echo 'Maven Build Completed in dev'
 	}
 	}
 	stage('Unit Test & Reports Publishing') {
             steps {
                 script {
                     sh "${env.mvntest}"
-                    echo 'Unit Testing Completed'
+                    echo 'Unit Testing Completed in dev'
                 }
             }
 	post {
