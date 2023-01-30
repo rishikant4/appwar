@@ -2,7 +2,7 @@ pipeline {
     agent any
 	environment {
 	PROJECT_ID = 'calm-seeker-375715'
-        CLUSTER_NAME = 'cluster-1'
+        CLUSTER_NAME = 'staging'
         LOCATION = 'us-central1-c'
         CREDENTIALS_ID = 'My First Project'
 		
@@ -69,6 +69,22 @@ pipeline {
         }
 
        }
+       }
+		stage('Deploy to staging gke'){
+         when {
+                branch 'dev'
+            }
+        steps{
+            
+            step([$class: 'KubernetesEngineBuilder', 
+		projectId: env.PROJECT_ID, 
+		clusterName: env.CLUSTER_NAME,
+		 location: env.LOCATION, 
+		manifestPattern: 'deployment.yaml', 
+		credentialsId: env.CREDENTIALS_ID,
+		 verifyDeployments: true])
+		   echo "Deployment Finished ..."
+        }
        }
     }
 }
