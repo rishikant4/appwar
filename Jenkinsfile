@@ -53,5 +53,22 @@ pipeline {
                 }
             }
 }
+		stage('Docker build'){
+        steps{
+            script{
+                sh 'docker build -t rishi236/spring:0.1 . '
+            }
+        }
+       }
+       stage('Docker login and push'){
+        steps{
+            withCredentials([string(credentialsId: 'docker_creds', variable: 'docker')]) {
+            sh 'docker login -u rishi236 -p ${docker}'
+
+            sh 'docker push rishi236/spring:0.1'
+        }
+
+       }
+       }
     }
 }
