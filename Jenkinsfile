@@ -2,7 +2,7 @@ pipeline {
     agent any
 	environment {
 	PROJECT_ID = 'calm-seeker-375715'
-        CLUSTER_NAME = 'staging'
+        CLUSTER_NAME = 'gke'
         LOCATION = 'us-central1-c'
         CREDENTIALS_ID = 'My First Project'
 		
